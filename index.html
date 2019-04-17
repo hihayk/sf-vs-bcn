@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    
+    <div class="clocksSection">
+
+      <div class="clockWrapper">
+        <div class="clockCity">
+          San Francisco
+        </div>
+        <div class="counter">
+          <div class="counterHour">12</div>
+          <div class="counterTick">:</div>
+          <div class="counterMinutes">23</div>
+          <div class="counterType">pm</div>
+        </div>
+      </div>
+
+      <div class="clockWrapper">
+        <div class="clockCity">
+          Barcelona
+        </div>
+        <div class="counter">
+          <div class="counterHour">12</div>
+          <div class="counterTick">:</div>
+          <div class="counterMinutes">23</div>
+          <div class="counterType">pm</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="timelineSection">
+      <div class="timelineTrackWrapper">
+        <div class="timelineTrack">
+          <div class="timelineBox">
+            <div class="timelineBoxFill"></div>
+            <div class="timelineBoxNumber">12</div>
+          </div>
+          <div class="timelineBox">
+            <div class="timelineBoxFill"></div>
+            <div class="timelineBoxNumber">1</div>
+          </div>
+          <div class="timelineBox">
+            <div class="timelineBoxFill"></div>
+            <div class="timelineBoxNumber">2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //const getHour = () => 9
+      const getHour = () => new Date().getHours()
+      const date = new Date()
+      const getDay = () => date.getUTCDate()
+
+      const getSFHour = () => {
+        if (getHour() < 9) {
+          return getHour() - 9 + 24
+        }
+
+        if (getHour() >= 9) {
+          return getHour() - 9
+        }
+      }
+
+      console.log(getHour(), getSFHour())
+
+      const getHourWithType = (hour) => {
+        if(hour === 12) {
+          return {hour: 12, type: 'pm'}
+        }
+
+        if(hour === 0) {
+          return {hour: 12, type: 'am'}
+        }
+        
+        if(hour > 12) {
+          return {hour: hour-12, type: 'pm'}
+        }
+        
+        return {hour: hour, type: 'am'}
+      }
+
+      const getMinutes = () => {
+        const minutes = new Date().getMinutes()
+        if(minutes < 10) {
+          return '0' + minutes
+        }
+        return minutes
+      }
+
+      const counterHour = document.querySelectorAll('.counterHour')
+      const counterMinutes = document.querySelectorAll('.counterMinutes')
+      const counterType = document.querySelectorAll('.counterType')
+
+      counterHour[0].innerHTML = getHourWithType(getSFHour()).hour
+      counterHour[1].innerHTML = getHourWithType(getHour()).hour
+
+      counterMinutes[0].innerHTML = getMinutes()
+      counterMinutes[1].innerHTML = getMinutes()
+
+      counterType[0].innerHTML = getHourWithType(getSFHour()).type
+      counterType[1].innerHTML = getHourWithType(getHour()).type
+
+      const timelineTrack = document.querySelector('.timelineTrack')
+
+      const fillTimeline = () => {
+        let timelineBoxes = []
+        let i
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox">
+              <div class="timelineBoxFill timelineBoxFill-pm"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox">
+              <div class="timelineBoxFill timelineBoxFill-am"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox">
+              <div class="timelineBoxFill timelineBoxFill-pm"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox">
+              <div class="timelineBoxFill timelineBoxFill-am"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        return timelineBoxes
+      }
+
+      timelineTrack.innerHTML = fillTimeline().join('')
+
+
+      const leftProportion = () => {
+        return getHourWithType(getSFHour()).hour + getMinutes() / 60
+      }
+
+      timelineTrack.setAttribute("style", `left: -${leftProportion()*48}px;`)
+
+      console.log(leftProportion())
+
+    </script>
+
+  </body>
+</html>
