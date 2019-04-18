@@ -5,7 +5,6 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="main.css">
   </head>
@@ -59,8 +58,8 @@
     </div>
 
     <script>
-      const getHour = () => 4
-      // const getHour = () => new Date().getHours()
+      // const getHour = () => 4
+      const getHour = () => new Date().getHours()
       const date = new Date()
       const getDay = () => date.getUTCDate()
 
@@ -101,17 +100,30 @@
       const counterHour = document.querySelectorAll('.counterHour')
       const counterMinutes = document.querySelectorAll('.counterMinutes')
       const counterType = document.querySelectorAll('.counterType')
-
-      counterHour[0].innerHTML = getHourWithType(getSFHour()).hour
-      counterHour[1].innerHTML = getHourWithType(getHour()).hour
-
-      counterMinutes[0].innerHTML = getMinutes()
-      counterMinutes[1].innerHTML = getMinutes()
-
-      counterType[0].innerHTML = getHourWithType(getSFHour()).type
-      counterType[1].innerHTML = getHourWithType(getHour()).type
-
       const timelineTrack = document.querySelector('.timelineTrack')
+
+      const leftProportion = () => {
+        return getSFHour() + getMinutes() / 60 + 12
+      }
+
+      const updateTime = () => {
+        counterHour[0].innerHTML = getHourWithType(getSFHour()).hour
+        counterHour[1].innerHTML = getHourWithType(getHour()).hour
+
+        counterMinutes[0].innerHTML = getMinutes()
+        counterMinutes[1].innerHTML = getMinutes()
+
+        counterType[0].innerHTML = getHourWithType(getSFHour()).type
+        counterType[1].innerHTML = getHourWithType(getHour()).type
+
+        timelineTrack.setAttribute("style", `transform: translateX(-${leftProportion()*48}px);`)
+      }
+
+      updateTime()
+
+      window.setInterval(function(){
+        updateTime()
+      }, 1000);
 
       const fillTimeline = () => {
         let timelineBoxes = []
@@ -175,12 +187,6 @@
       }
 
       timelineTrack.innerHTML = fillTimeline().join('')
-
-      const leftProportion = () => {
-        return getSFHour() + getMinutes() / 60 + 12
-      }
-
-      timelineTrack.setAttribute("style", `left: -${leftProportion()*48}px;`)
 
     </script>
 

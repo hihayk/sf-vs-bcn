@@ -1,21 +1,51 @@
+@font-face {
+  font-family: 'NB International Pro web';
+  src: url('fonts/NBInternationalPro-Light.woff2') format('woff2'),
+      url('fonts/NBInternationalPro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NB International Pro web';
+  src: url('fonts/NBInternationalPro-Bold.woff2') format('woff2'),
+      url('fonts/NBInternationalPro-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 :root {
 	--hourWidth: 48px;
+	--counterTextSize: 72px;
+	--cityTextSize: 18px;
+}
+
+@media (max-width: 1000px) {
+	:root {
+		--counterTextSize: 48px;
+		--cityTextSize: 14px;
+	}
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
+html, body {
+	height: 100%;
+}
+
 body {
 	margin: 0;
-	font-family: NB International Pro;
+	font-family: NB International Pro web;
 	font-weight: 300;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
 }
 
 .clockCity {
-	font-size: 18px;
+	font-size: var(--cityTextSize);
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 0.06em;
@@ -24,7 +54,7 @@ body {
 }
 
 .counter {
-	font-size: 72px;
+	font-size: var(--counterTextSize);
 	display: flex;
 	letter-spacing: -0.06em;
 }
@@ -41,11 +71,12 @@ body {
 .clocksSection {
 	display: flex;
 	position: relative;
-	padding: 64px;
+	padding: calc(50vh - 200px) 64px 64px 64px;
 }
 
 .clockWrapper {
 	width: calc(var(--hourWidth) * 9);
+	flex-shrink: 0;
 }
 
 .clockWrapper:before {
@@ -62,11 +93,16 @@ body {
 .timelineTrack {
 	display: flex;
 	position: relative;
-	transform: translateX(62px);
+	left: 62px;
+	transition: 0.5s;
 }
 
 .timelineTrackWrapper {
-	overflow: hidden;
+	
+}
+
+.timelineBox {
+	flex-shrink: 0;
 }
 
 .timelineBoxNumber {
@@ -110,4 +146,14 @@ body {
 .timelineBox-1.timelineBox-pm:before {
 	content: 'pm';
 	color: #A5956A;
+}
+
+.timelineBox-1.timelineBox-am:after {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 200vh;
+	background-color: rgba(0,0,0,0.2);
+	position: absolute;
+	top: -100vh;
 }

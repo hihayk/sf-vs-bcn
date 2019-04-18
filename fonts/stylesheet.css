@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'NB International';
+    src: url('NBInternationalPro-Light.woff2') format('woff2'),
+        url('NBInternationalPro-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NB International';
+    src: url('NBInternationalPro-Bold.woff2') format('woff2'),
+        url('NBInternationalPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
