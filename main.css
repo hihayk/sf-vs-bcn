@@ -22,8 +22,6 @@
 
 @media (max-width: 1000px) {
 	:root {
-		--counterTextSize: 48px;
-		--cityTextSize: 14px;
 	}
 }
 
