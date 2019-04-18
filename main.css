@@ -51,7 +51,6 @@ body {
 	text-transform: uppercase;
 	font-weight: 700;
 	letter-spacing: 0.06em;
-	text-indent: 0.2em;
 	margin-bottom: 8px;
 }
 
@@ -59,6 +58,8 @@ body {
 	font-size: var(--counterTextSize);
 	display: flex;
 	letter-spacing: -0.06em;
+	position: relative;
+	left: -0.05em;
 }
 
 .counterHour,
@@ -95,12 +96,8 @@ body {
 .timelineTrack {
 	display: flex;
 	position: relative;
-	left: 62px;
+	left: 64px;
 	transition: 0.5s;
-}
-
-.timelineTrackWrapper {
-	
 }
 
 .timelineBox {

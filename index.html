@@ -123,10 +123,14 @@
         timelineTrack.setAttribute("style", `transform: translateX(-${Math.floor(leftProportion()*48)}px);`)
       }
 
+
+
       updateTime()
 
-      window.setInterval(function(){
-        updateTime()
+      window.setInterval(function(){        
+        if(new Date().getSeconds() === 0) {
+          updateTime()
+        }
       }, 1000);
 
       const fillTimeline = () => {
