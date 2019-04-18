@@ -114,6 +114,7 @@ body {
 	line-height: 48px;
 	border-radius: 50%;
 	cursor: default;
+	user-select: none;
 }
 
 .timelineBoxFill {
