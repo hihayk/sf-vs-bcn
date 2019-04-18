@@ -85,12 +85,12 @@ body {
 
 .timelineBoxFill-am {
 	background-color: #D1DBE7;
-	box-shadow: inset 1px 0 rgba(103, 133, 169, 0.2);
+	box-shadow: inset 1px 0 rgba(103, 133, 169, 0.3);
 }
 
 .timelineBoxFill-pm {
 	background-color: #F8EDCF;
-	box-shadow: inset 1px 0 rgba(165, 149, 106, 0.2);
+	box-shadow: inset 1px 0 rgba(165, 149, 106, 0.3);
 }
 
 .timelineBox-1.timelineBox-am:before,
