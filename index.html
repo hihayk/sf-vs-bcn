@@ -120,7 +120,7 @@
         counterType[0].innerHTML = getHourWithType(getSFHour()).type
         counterType[1].innerHTML = getHourWithType(getHour()).type
 
-        timelineTrack.setAttribute("style", `transform: translateX(-${leftProportion()*48}px);`)
+        timelineTrack.setAttribute("style", `transform: translateX(-${Math.floor(leftProportion()*48)}px);`)
       }
 
       updateTime()
