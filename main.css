@@ -110,6 +110,10 @@ body {
 	position: relative;
 	left: 24px;
 	opacity: 0.4;
+	transition: 0.4s;
+	line-height: 48px;
+	border-radius: 50%;
+	cursor: default;
 }
 
 .timelineBoxFill {

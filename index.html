@@ -117,6 +117,7 @@
       const counterMinutes = document.querySelectorAll('.counterMinutes')
       const counterType = document.querySelectorAll('.counterType')
       const timelineTrack = document.querySelector('.timelineTrack')
+      const timelineBox = document.querySelectorAll('.timelineBox')
 
       const leftProportion = () => {
         return getSFHour() + getMinutes() / 60 + 12
@@ -134,8 +135,6 @@
 
         timelineTrack.setAttribute("style", `transform: translateX(-${Math.floor(leftProportion()*48)}px);`)
       }
-
-
 
       updateTime()
 
@@ -207,6 +206,53 @@
       }
 
       timelineTrack.innerHTML = fillTimeline().join('')
+
+      const style = document.createElement('style')
+
+      let i
+      let hourStyles = []
+      for (i = 1; i < 13; i++) {
+        if (i <= 3) {
+          hourStyles.push(`
+            .timelineBox-${i}.timelineBox-am:hover .timelineBoxNumber,
+            .timelineBox-${i}.timelineBox-am:hover ~ .timelineBox-${i + 9}.timelineBox-am .timelineBoxNumber {
+              background-color: #eee;
+              opacity: 1;
+            }
+          `)
+        }
+        if (i > 3) {
+          hourStyles.push(`
+            .timelineBox-${i}.timelineBox-am:hover .timelineBoxNumber,
+            .timelineBox-${i}.timelineBox-am:hover ~ .timelineBox-${i+9-12}.timelineBox-pm .timelineBoxNumber {
+              background-color: #eee;
+              opacity: 1;
+            }
+          `)
+        }
+        if (i <= 3) {
+          hourStyles.push(`
+            .timelineBox-${i}.timelineBox-pm:hover .timelineBoxNumber,
+            .timelineBox-${i}.timelineBox-pm:hover ~ .timelineBox-${i + 9}.timelineBox-pm .timelineBoxNumber {
+              background-color: #eee;
+              opacity: 1;
+            }
+          `)
+        }
+        if (i > 3) {
+          hourStyles.push(`
+            .timelineBox-${i}.timelineBox-pm:hover .timelineBoxNumber,
+            .timelineBox-${i}.timelineBox-pm:hover ~ .timelineBox-${i+9-12}.timelineBox-am .timelineBoxNumber {
+              background-color: #eee;
+              opacity: 1;
+            }
+          `)
+        }
+        style.innerHTML = hourStyles.join('')
+      }
+
+      const ref = document.querySelector('script');
+      ref.parentNode.insertBefore(style, ref);
 
     </script>
 
