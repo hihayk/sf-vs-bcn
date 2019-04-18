@@ -62,18 +62,30 @@
     </div>
 
     <script>
-      // const getHour = () => 4
-      const getHour = () => new Date().getHours()
+      const getHour = () => new Date().getUTCHours()
+      // const getHour = () => 0
       const date = new Date()
       const getDay = () => date.getUTCDate()
 
+      const getBCNHour = () => {
+        if (getHour() < 22) {
+          return getHour() + 2
+        }
+        if (getHour() === 22) {
+          return 0
+        }
+        if (getHour() > 22) {
+          return 24 - getHour()
+        }
+      }
+
       const getSFHour = () => {
-        if (getHour() < 9) {
-          return getHour() - 9 + 24
+        if (getHour() < 7) {
+          return getHour() - 7 + 24
         }
 
-        if (getHour() >= 9) {
-          return getHour() - 9
+        if (getHour() >= 7) {
+          return getHour() - 7
         }
       }
 
@@ -112,13 +124,13 @@
 
       const updateTime = () => {
         counterHour[0].innerHTML = getHourWithType(getSFHour()).hour
-        counterHour[1].innerHTML = getHourWithType(getHour()).hour
+        counterHour[1].innerHTML = getHourWithType(getBCNHour()).hour
 
         counterMinutes[0].innerHTML = getMinutes()
         counterMinutes[1].innerHTML = getMinutes()
 
         counterType[0].innerHTML = getHourWithType(getSFHour()).type
-        counterType[1].innerHTML = getHourWithType(getHour()).type
+        counterType[1].innerHTML = getHourWithType(getBCNHour()).type
 
         timelineTrack.setAttribute("style", `transform: translateX(-${Math.floor(leftProportion()*48)}px);`)
       }
