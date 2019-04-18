@@ -85,8 +85,29 @@ body {
 
 .timelineBoxFill-am {
 	background-color: #D1DBE7;
+	box-shadow: inset 1px 0 rgba(103, 133, 169, 0.2);
 }
 
 .timelineBoxFill-pm {
 	background-color: #F8EDCF;
+	box-shadow: inset 1px 0 rgba(165, 149, 106, 0.2);
+}
+
+.timelineBox-1.timelineBox-am:before,
+.timelineBox-1.timelineBox-pm:before {
+	position: absolute;
+	line-height: 40px;
+	text-transform: uppercase;
+	margin-left: 12px;
+	font-weight: 700;
+}
+
+.timelineBox-1.timelineBox-am:before {
+	content: 'am';
+	color: #6785A9;
+}
+
+.timelineBox-1.timelineBox-pm:before {
+	content: 'pm';
+	color: #A5956A;
 }

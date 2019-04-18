@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    
+
     <div class="clocksSection">
 
       <div class="clockWrapper">
@@ -59,8 +59,8 @@
     </div>
 
     <script>
-      //const getHour = () => 9
-      const getHour = () => new Date().getHours()
+      const getHour = () => 4
+      // const getHour = () => new Date().getHours()
       const date = new Date()
       const getDay = () => date.getUTCDate()
 
@@ -73,8 +73,6 @@
           return getHour() - 9
         }
       }
-
-      console.log(getHour(), getSFHour())
 
       const getHourWithType = (hour) => {
         if(hour === 12) {
@@ -121,7 +119,7 @@
 
         for (i = 1; i < 13; i++) { 
           timelineBoxes.push(`
-            <div class="timelineBox">
+            <div class="timelineBox timelineBox-pm timelineBox-${i}">
               <div class="timelineBoxFill timelineBoxFill-pm"></div>
               <div class="timelineBoxNumber">${i}</div>
             </div>
@@ -130,7 +128,7 @@
 
         for (i = 1; i < 13; i++) { 
           timelineBoxes.push(`
-            <div class="timelineBox">
+            <div class="timelineBox timelineBox-am timelineBox-${i}">
               <div class="timelineBoxFill timelineBoxFill-am"></div>
               <div class="timelineBoxNumber">${i}</div>
             </div>
@@ -139,7 +137,7 @@
 
         for (i = 1; i < 13; i++) { 
           timelineBoxes.push(`
-            <div class="timelineBox">
+            <div class="timelineBox timelineBox-pm timelineBox-${i}">
               <div class="timelineBoxFill timelineBoxFill-pm"></div>
               <div class="timelineBoxNumber">${i}</div>
             </div>
@@ -148,7 +146,25 @@
 
         for (i = 1; i < 13; i++) { 
           timelineBoxes.push(`
-            <div class="timelineBox">
+            <div class="timelineBox timelineBox-am timelineBox-${i}">
+              <div class="timelineBoxFill timelineBoxFill-am"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox timelineBox-pm timelineBox-${i}">
+              <div class="timelineBoxFill timelineBoxFill-pm"></div>
+              <div class="timelineBoxNumber">${i}</div>
+            </div>
+          `)
+        }
+
+        for (i = 1; i < 13; i++) { 
+          timelineBoxes.push(`
+            <div class="timelineBox timelineBox-am timelineBox-${i}">
               <div class="timelineBoxFill timelineBoxFill-am"></div>
               <div class="timelineBoxNumber">${i}</div>
             </div>
@@ -160,14 +176,11 @@
 
       timelineTrack.innerHTML = fillTimeline().join('')
 
-
       const leftProportion = () => {
-        return getHourWithType(getSFHour()).hour + getMinutes() / 60
+        return getSFHour() + getMinutes() / 60 + 12
       }
 
       timelineTrack.setAttribute("style", `left: -${leftProportion()*48}px;`)
-
-      console.log(leftProportion())
 
     </script>
 
