@@ -39,7 +39,11 @@ body {
 	font-weight: 300;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.mainContainer {
 	overflow: hidden;
+	height: 100%;
 }
 
 .clockCity {
